@@ -1,0 +1,464 @@
+// to reset default styles (handwritten item to replace normalize.css)
+@import "nullstyle.scss";
+
+
+// VARIABLES
+// colors
+$color-yellow: #fde368;
+$color-lavender-light: #c9e4ff;
+$color-lavender-medium: #82a6e0;
+$color-lavender-dark: #3f5bae;
+$color-black: #000;
+$color-black-semitransparent: hsla(0, 0%, 0%, 0.5);
+$color-white: #fff;
+$color-green-light: #daefea;
+$color-green-dark: #aad2c9;
+$color-lilac-light: #efe1fa;
+$color-red: #ff0000;
+
+// highlights
+$shadow-active: 0 0 5px $color-lavender-dark;
+$shadow-default: 0 0 5px rgba(0,0,0,0.5);
+$shadow-default-toggler: 0 0 -5px rgba(0,0,0,0.5);
+
+// fonts
+// font-family
+$font-logo: 'Fredericka the Great', serif;
+$font-intro: 'Stalemate', sans-serif;
+$font-content: 'Roboto', sans-serif;
+$font-user-profile: 'Special Elite', sans-serif;
+
+// fonts
+// font-size
+$size-header: 20px;
+$size-content: 16px;
+
+
+// PATTERNS
+// buttons
+%btn {
+	border-radius: 5px;
+	box-shadow: $shadow-default;
+	transition: 0.3s ease-out;
+}
+%btn-big {
+	padding: 15px 25px;
+	margin: 10px;
+	width: 8em;
+	font-size: $size-header;
+}
+%btn-small {
+	padding: 5px 10px;
+	width: 5em;
+	font-size: $size-content;
+}
+%btn-primary {
+	color: $color-white;
+	background-color: $color-lavender-medium;
+}
+%btn-secondary {
+	color: $color-black;
+	background-color: $color-lavender-light;
+}
+
+%btn-hovered {
+	background-color: $color-lavender-dark;
+	color: $color-white;
+	transition: 0.3s ease-out;
+}
+%btn-close {
+	display: block;
+	position: relative;
+	width: 18px;
+	height: 18px;
+	background-color: $color-white;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	transition: 0.5s ease-out;
+	::before, ::after {
+		content: '';
+		display: block;
+		position: absolute;
+		background-color: $color-lavender-light;
+		border-radius: 10px;
+		right: 0;
+		width: 100%;
+		height: 2px;
+		transition: 0.5s ease-out;
+	}
+	::before {
+		top: 45%;
+		bottom: 45%;
+		transform: rotate(45deg);
+	}
+	::after {
+		top: 45%;
+		bottom: 45%;
+		transform: rotate(-45deg);
+	}
+}
+
+
+// MAIN STYLES
+body {
+	background-color: $color-yellow;
+}
+
+.app {
+	border-top: 2px solid $color-lavender-medium;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+// header
+.header {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 60px;
+
+	.user__profile {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+
+		.profile__name {
+			margin-right: 10px;
+			font-family: $font-user-profile;
+			font-size: $size-content;
+			color: $color-black;
+		}
+
+		.profile__img {
+			border: 1px solid $color-black;
+			border-radius: 50%;
+			img {
+				width: 25px;
+				margin: 5px;
+			}
+		}
+	}
+}
+
+// introduction section
+.intro {
+	font-size: 4.5em;
+	font-family: $font-intro;
+	margin: 80px 0;
+	text-align: center;
+	.logo {
+		font-size: 1.5em;
+		font-family: $font-logo;
+	}
+}
+
+// content
+.content {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 60px;
+
+	.content__manager {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+	}
+}
+
+.builder__buttons {
+	display: flex;
+	margin: 20px;
+}
+
+.builder__button {
+	display: inline-block;
+	margin-bottom: 20px;
+	button {
+		@extend %btn;
+		@extend %btn-big;
+	}
+	button.button--primary {
+		@extend %btn-primary;
+	}
+	button.button--secondary {
+		@extend %btn-secondary;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 18em;
+	margin-bottom: 25px;
+	background-color: $color-lavender-light;
+	border-radius: 5px;
+	box-shadow: $shadow-default;
+
+	.form__header {
+		display: flex;
+		justify-content: space-between;
+		font-size: $size-header;
+		padding: 30px;
+		border-bottom: 1px solid $color-white;
+
+		button.button--close {
+			@extend %btn-close;
+			&:hover {
+				background-color: $color-lavender-dark;
+			}
+		}
+	}
+
+	.form__controls {
+		display: flex;
+		flex-direction: column;
+		font-size: $size-content;
+		padding: 30px;
+	
+		.form__toggle {
+			display: flex;
+			.toggle__item {
+				border: 1px solid $color-lavender-medium;
+				padding: 6px 26px;
+				font-size: 14px;
+				&:nth-child(1) {
+					border-radius: 6px 0 0 6px;
+				}
+				&:nth-child(2) {
+					border-radius: 0 6px 6px 0;
+					border-left: none;
+				}
+				input[type=radio] {
+					display: none;
+				}
+			}
+		}
+	
+		.form__input {
+			display: flex;
+			flex-direction: column;
+			&:nth-child(2) {
+				margin: 15px 0;
+			}
+			input {
+				padding: 7px;
+				margin-top: 7px;
+				border-radius: 5px;
+				box-shadow: $shadow-default;
+				font-size: $size-content;
+				&.invalid {
+					border: 1px solid $color-red;
+				}
+				&:focus {
+					box-shadow: $shadow-active;
+				}
+				&::placeholder {
+					font-size: 0.7em;
+					color: $color-red;
+				}
+			}
+		}
+	
+		.form__buttons {
+			padding-top: 15px;
+			display: flex;
+			justify-content: center;
+			button {
+				margin: 5px;
+				@extend %btn;
+				@extend %btn-small;
+			}
+			button.button--secondary {
+				@extend %btn-secondary;
+				&:hover {
+					@extend %btn-hovered;
+				}
+			}
+			button.button--primary {
+				@extend %btn-primary;
+				&:hover {
+					@extend %btn-hovered;
+				}
+			}
+		}
+	}
+}
+
+.boards {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex: 1 1 auto;
+	width: 80%;
+
+	.board {
+		display: flex;
+		flex-direction: column;
+		width: 18em;
+		margin: 20px;
+		background-color: $color-yellow;
+		border-radius: 5px;
+		box-shadow: $shadow-default;
+
+		&.hovered {
+			background-color: $color-lavender-medium;
+		}
+
+		.board__header {
+			font-size: $size-header;
+			text-align: center;
+			text-transform: uppercase;
+			padding: 30px 0;
+			margin: 0 10px;
+			border-bottom: 1px solid $color-black;
+			input.title {
+				background-color: $color-yellow;
+				font-size: $size-content;
+				color: $color-black-semitransparent;
+				padding: 15px;
+				margin: 10px 0;
+				border-radius: 5px;
+				width: 100%;
+			}
+		}
+
+		.board__input {
+			font-size: $font-content;
+			margin: 10px 10px 10px;
+			text-align: center;
+			background-color: $color-white;
+			border-radius: 5px;
+			box-shadow: $shadow-default;
+			input {
+				font-size: $size-content;
+				padding: 15px;
+				border-radius: 5px;
+				width: 100%;
+				&:focus {
+					box-shadow: $shadow-active;
+				}
+			}
+		}
+
+		.board__items {
+			width: 100%;
+			.board__item {
+				display: flex;
+				justify-content: space-between;
+				font-size: 16px;
+				padding: 15px;
+				margin: 0 10px 10px;
+				border-radius: 5px;
+				box-shadow: 0 0 5px rgba(0,0,0,0.5);
+				background-color: $color-green-light;
+				img {
+					width: 18px;
+				}
+				&.cancelled {
+					background-color: $color-lilac-light;
+					span {
+						text-decoration: line-through;
+					}
+				}
+			}
+		}
+	}
+}
+
+//preloader
+.board__preloader {
+	svg path {
+		fill: $color-lavender-medium;
+		stroke: $color-white;
+	}
+}
+
+// error message page
+.error {
+	font-size: $size-header;
+	color: $color-red;
+}
+
+// footer
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: baseline;
+	padding: 0 60px;
+	border-top: 1px solid $color-white;
+	background-color: $color-black;
+	color: $color-white;
+	font-size: $size-content;
+
+	.footer__col {
+		padding: 20px 0;
+	}
+	.footer__col:nth-child(1)::after {
+		content: '|';
+		padding: 0 10px;
+	}
+
+	.developer {
+		font-family: $font-intro;
+		font-size: 32px;
+		color: $color-lavender-medium;
+	}
+}
+
+
+// UI
+.highlighted {
+	box-shadow: $shadow-active;
+}
+
+.checked {
+	background-color: $color-lavender-medium;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.hidden {
+	display: none;
+}
+
+
+// ADAPTIVES
+@media screen and (max-width: 1294px) {
+	.footer {
+		padding: 10px 30px;
+		flex-direction: column;
+		align-items: flex-end;
+
+		.footer__col {
+			padding: 10px 0;
+		}
+		.footer__col:nth-child(1)::after {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 1014px) {
+	.intro {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 784px) {
+	.manager__buttons {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.builder__button {
+		margin-bottom: 0;
+	}
+}

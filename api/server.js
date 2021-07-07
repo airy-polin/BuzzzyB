@@ -52,10 +52,15 @@ app.get('/api/user', (req, res) => {
 
 	let user = usersData.find(user => user.id === req.cookies['userToken']);
 
-	res.send({
-		id: user.id,
-		email: user.email,
-	});
+	if (user){
+		res.send({
+			id: user.id,
+			email: user.email,
+		});
+	} else {
+		res.status(401);
+		res.send();
+	}
 });
 
 app.get('/api/boards', (req, res) => {
@@ -95,21 +100,21 @@ app.post('/api/boards/add', (req, res) => {
 	res.send(newBoard);
 });
 
-// app.post('/api/boards/update', (req, res) => {
-// 	const usersData = getUsersFromDB(),
-// 		newTask = req.body;
+app.post('/api/boards/add-task', (req, res) => {
+	const usersData = getUsersFromDB(),
+		newTask = req.body;
 
-// 	console.log(req.cookies['userToken']);
-// 	let user = usersData.find(user => user.id === req.cookies['userToken']);
-// 	let boardIndex = user.boards.findIndex(board => board.id === newTask.boardId);
+	let user = usersData.find(user => user.id === req.cookies['userToken']);
+	let boardIndex = user.boards.findIndex(board => board.id === newTask.boardId);
 
-// 	newTask.id = shortId.generate();
-// 	user.boards[boardIndex].tasks.push(newTask);
+	newTask.id = shortId.generate();
+	delete newTask.boardId;
+	user.boards[boardIndex].tasks.push(newTask);
 
-// 	setUsersToDB(usersData);
+	setUsersToDB(usersData);
 
-// 	res.send(newTask);
-// });
+	res.send(newTask);
+});
 
 function getUsersFromDB() {
 	return JSON.parse(fs.readFileSync(dbFilePath, 'utf8'));

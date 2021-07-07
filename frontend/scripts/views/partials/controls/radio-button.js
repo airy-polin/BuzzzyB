@@ -1,4 +1,4 @@
-import {generateID} from "../../../helpers/utils.js";
+import {generateID} from '../../../helpers/utils.js';
 
 class RadioButton {
 	constructor(firstLabelName, secondLabelName, isFirstActive) {
@@ -30,15 +30,12 @@ class RadioButton {
 	}
 
 	afterRender() {
-		const buttons = document.getElementsByClassName('toggle__item');
-		for (let i = 0; i < buttons.length; i++) {
-			buttons[i].addEventListener('click', (event) => this.activateRadioButton(event));
-		}
+		const radioButton = document.getElementById(this.radioButtonId);
+		radioButton.addEventListener('click', (event) => this.activateRadioButton(event));
 	}
 
 	activateRadioButton(event) {
 		const clickedRadio = event.currentTarget;
-		console.log(clickedRadio);
 
 		const radioButtons = document.getElementsByClassName('toggle__item');
 		for (let i = 0; i < radioButtons.length; i++) {

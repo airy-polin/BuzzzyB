@@ -12,7 +12,7 @@ class BoardBuilderForm {
 		this.model = new Users();
 	}
 	render() {
-		this.boardNameInput = new Input('What shall we call the board', Input.Type.TEXT);
+		this.boardNameInput = new Input('What shall we call the board?', Input.Type.TEXT);
 		this.createButton = new Button('Create', Button.Type.PRIMARY, Button.Size.SMALL, () => this.addBoard());
 		this.cancelButton = new Button('Cancel', Button.Type.SECONDARY, Button.Size.SMALL, () => this.closeBoardBuilderForm());
 		this.closeButton = new CloseButton(() => this.closeBoardBuilderForm());
@@ -62,4 +62,5 @@ class BoardBuilderForm {
 	}
 
 }
+
 export default BoardBuilderForm;

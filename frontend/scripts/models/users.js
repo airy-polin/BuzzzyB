@@ -113,25 +113,25 @@ class Users {
 		});
 	}
 
-	// addTask(newTask) {
-	// 	return new Promise((resolve, reject) => {
-	// 		const xhr = new XMLHttpRequest();
+	addTask(newTask) {
+		return new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
 
-	// 		xhr.open('POST', 'http://localhost:3000/api/boards/update');
-	// 		xhr.setRequestHeader('Content-Type', 'application/json');
-	// 		xhr.withCredentials = true;
+			xhr.open('POST', 'http://localhost:3000/api/boards/add-task');
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.withCredentials = true;
 
-	// 		xhr.onload = () => {
-	// 			if (xhr.status < 400) {
-	// 				resolve(JSON.parse(xhr.response));
-	// 			} else {
-	// 				reject(xhr.status);
-	// 			}
-	// 		}
-
-	// 		xhr.send(JSON.stringify(newTask));
-	// 	});
-	// }
+			xhr.onload = () => {
+				if (xhr.status < 400) {
+					resolve(JSON.parse(xhr.response));
+				} else {
+					reject(xhr.status);
+				}
+			}
+			
+			xhr.send(JSON.stringify(newTask));
+		});
+	}
 }
 
 export default Users;

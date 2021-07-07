@@ -1,4 +1,4 @@
-import {generateID} from "../../../helpers/utils.js";
+import {generateID} from '../../../helpers/utils.js';
 
 class Button {
 	static Type = {
@@ -23,7 +23,7 @@ class Button {
 		this.buttonId = generateID();
 
 		return `
-			<div action="" class="builder__button">
+			<div class="builder__button">
 				<button id=${this.buttonId} class="${this._getTypeClass()} ${this._getSizeClass()}" type="button">${this.name}</button>
 			</div>
 		`;
@@ -45,15 +45,15 @@ class Button {
 
 	_getTypeClass() {
 		switch (this.type) {
-			case Button.Type.PRIMARY: return "button--primary";
-			case Button.Type.SECONDARY: return "button--secondary";
+			case Button.Type.PRIMARY: return 'button--primary';
+			case Button.Type.SECONDARY: return 'button--secondary';
 		}
 	}
 
 	_getSizeClass() {
 		switch (this.size) {
-			case Button.Size.BIG: return "button--big";
-			case Button.Size.SMALL: return "button--small";
+			case Button.Size.BIG: return 'button--big';
+			case Button.Size.SMALL: return 'button--small';
 		}
 	}
 }

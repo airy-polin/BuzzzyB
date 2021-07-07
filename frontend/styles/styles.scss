@@ -25,13 +25,15 @@ $shadow-default-toggler: 0 0 -5px rgba(0,0,0,0.5);
 // font-family
 $font-logo: 'Fredericka the Great', serif;
 $font-intro: 'Stalemate', sans-serif;
-$font-content: 'Roboto', sans-serif;
+$font-content: 'Open Sans', sans-serif;
 $font-user-profile: 'Special Elite', sans-serif;
 
 // fonts
 // font-size
 $size-header: 20px;
 $size-content: 16px;
+$size-secondary: 14px;
+$size-small: 12px;
 
 
 // PATTERNS
@@ -103,6 +105,7 @@ $size-content: 16px;
 // MAIN STYLES
 body {
 	background-color: $color-yellow;
+	min-width: 375px;
 }
 
 .app {
@@ -122,7 +125,7 @@ body {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 20px;
+		padding: 20px 0;
 
 		.profile__name {
 			margin-right: 10px;
@@ -146,9 +149,9 @@ body {
 .intro {
 	font-size: 4.5em;
 	font-family: $font-intro;
-	margin: 80px 0;
+	margin: 60px 0;
 	text-align: center;
-	.logo {
+	.intro__logo {
 		font-size: 1.5em;
 		font-family: $font-logo;
 	}
@@ -161,6 +164,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	padding: 0 60px;
+	font-family: $font-content;
 
 	.content__manager {
 		display: flex;
@@ -177,7 +181,7 @@ body {
 
 .builder__button {
 	display: inline-block;
-	margin-bottom: 20px;
+	margin-top: 10px;
 	button {
 		@extend %btn;
 		@extend %btn-big;
@@ -224,7 +228,7 @@ body {
 			display: flex;
 			.toggle__item {
 				border: 1px solid $color-lavender-medium;
-				padding: 6px 26px;
+				padding: 6px 24px;
 				font-size: 14px;
 				&:nth-child(1) {
 					border-radius: 6px 0 0 6px;
@@ -243,24 +247,28 @@ body {
 			display: flex;
 			flex-direction: column;
 			&:nth-child(2) {
-				margin: 15px 0;
+				margin: 18px 0;
+			}
+			label {
+				font-weight: 600;
 			}
 			input {
 				padding: 7px;
 				margin-top: 7px;
 				border-radius: 5px;
 				box-shadow: $shadow-default;
-				font-size: $size-content;
+				font-size: $size-secondary;
 				&.invalid {
 					border: 1px solid $color-red;
 				}
 				&:focus {
 					box-shadow: $shadow-active;
 				}
-				&::placeholder {
-					font-size: 0.7em;
-					color: $color-red;
-				}
+			}
+			span.pop-up {
+				color: red;
+				font-size: $size-small;
+				padding: 6px 2px 0;
 			}
 		}
 	
@@ -268,17 +276,20 @@ body {
 			padding-top: 15px;
 			display: flex;
 			justify-content: center;
+
 			button {
 				margin: 5px;
 				@extend %btn;
 				@extend %btn-small;
 			}
+
 			button.button--secondary {
 				@extend %btn-secondary;
 				&:hover {
 					@extend %btn-hovered;
 				}
 			}
+
 			button.button--primary {
 				@extend %btn-primary;
 				&:hover {
@@ -294,19 +305,20 @@ body {
 	justify-content: center;
 	align-items: flex-start;
 	flex: 1 1 auto;
+	margin-top: 20px;
 	width: 80%;
 
 	.board {
 		display: flex;
 		flex-direction: column;
 		width: 18em;
+		min-width: 240px;
 		margin: 20px;
 		background-color: $color-yellow;
 		border-radius: 5px;
 		box-shadow: $shadow-default;
-
 		&.hovered {
-			background-color: $color-lavender-medium;
+			background-color: $color-lavender-light;
 		}
 
 		.board__header {
@@ -316,6 +328,10 @@ body {
 			padding: 30px 0;
 			margin: 0 10px;
 			border-bottom: 1px solid $color-black;
+			&.editable {
+				padding: 7px;
+			}
+
 			input.title {
 				background-color: $color-yellow;
 				font-size: $size-content;
@@ -334,6 +350,7 @@ body {
 			background-color: $color-white;
 			border-radius: 5px;
 			box-shadow: $shadow-default;
+
 			input {
 				font-size: $size-content;
 				padding: 15px;
@@ -347,6 +364,7 @@ body {
 
 		.board__items {
 			width: 100%;
+
 			.board__item {
 				display: flex;
 				justify-content: space-between;
@@ -393,7 +411,8 @@ body {
 	border-top: 1px solid $color-white;
 	background-color: $color-black;
 	color: $color-white;
-	font-size: $size-content;
+	font-family: $font-content;
+	font-size: $size-secondary;
 
 	.footer__col {
 		padding: 20px 0;
@@ -402,11 +421,16 @@ body {
 		content: '|';
 		padding: 0 10px;
 	}
+	.footer__col:nth-child(2) {
+		display: flex;
+		align-items: center;
 
-	.developer {
-		font-family: $font-intro;
-		font-size: 32px;
-		color: $color-lavender-medium;
+		.developer {
+			font-family: $font-intro;
+			font-size: 2.5em;
+			color: $color-lavender-medium;
+			padding-left: 5px;
+		}
 	}
 }
 
@@ -431,8 +455,11 @@ body {
 
 // ADAPTIVES
 @media screen and (max-width: 1294px) {
+	.boards {
+		flex-wrap: wrap;
+	}
+
 	.footer {
-		padding: 10px 30px;
 		flex-direction: column;
 		align-items: flex-end;
 
@@ -460,5 +487,38 @@ body {
 
 	.builder__button {
 		margin-bottom: 0;
+	}
+}
+
+@media screen and (max-width: 612px) {
+	.header {
+		padding: 0 30px;
+	}
+
+	.footer {
+		padding: 10px 30px;
+
+		.footer__col:nth-child(2) {
+			flex-direction: column;
+
+			.developer {
+				padding-top: 20px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 536px) {
+	.intro {
+		font-size: 3.5em;
+	}
+
+	.profile__name,
+	.footer {
+		font-size: $size-small;
+
+		.developer {
+			font-size: 2em;
+		}
 	}
 }

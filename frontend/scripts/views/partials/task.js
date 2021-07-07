@@ -1,13 +1,13 @@
-import {generateID} from "../../helpers/utils.js";
+import { generateID } from '../../helpers/utils.js';
 
 import Users from '../../models/users.js';
 import Component from '../component.js';
 
 class Task extends Component {
-	constructor(taskName) {
+	constructor(task) {
 		super();
 
-		this.taskName = taskName;
+		this.task = task;
 		this.model = new Users();
 	}
 
@@ -16,22 +16,18 @@ class Task extends Component {
 	}
 
 	render() {
-		return new Promise(resolve => {
-			this.tabCount = 2;
-			this.taskId = generateID();
+		this.tabCount = 2;
+		this.taskId = generateID();
 
-			resolve(`
-				<div class="board__item" id="${this.taskId}" tabindex=${this.tabCount} draggable="true">
-					<span class="item__text">${this.taskName}</span>
-					<img src="images/check-mark-green.svg" alt="check mark" />
-				</div>
-			`);
-		});
+		return `
+			<div class="board__item" id="${this.taskId}" tabindex=${this.tabCount} draggable="true">
+				<span class="item__text">${this.task.name}</span>
+				<img src="images/check-mark-green.svg" alt="check mark" />
+			</div>
+		`;
 	}
 
 	afterRender() {
-		// this.addTask();
-
 		const boardTask = document.getElementById(this.taskId);
 
 		boardTask.addEventListener('dblclick', (event) => this.toggleTask(event));
@@ -45,12 +41,12 @@ class Task extends Component {
 
 		if (clickedTask.classList.contains('cancelled')) {
 			clickedTask.innerHTML = `
-			<span class="item__text">${this.taskName}</span>
+			<span class="item__text">${this.task.name}</span>
 			<img src="images/delete-mark.svg" alt="delete mark" />
 			`;
 		} else {
 			clickedTask.innerHTML = `
-			<span class="item__text">${this.taskName}</span>
+			<span class="item__text">${this.task.name}</span>
 			<img src="images/check-mark-green.svg" alt="check mark" />
 			`;
 		}
@@ -71,15 +67,6 @@ class Task extends Component {
 		draggedTask.classList.remove('hidden');
 		draggedTask.classList.remove('dragged');
 	}
-
-	// addTask() {
-	// 	const boardTask = {
-	// 		boardId: 'V1hELlfJ5',
-	// 		name: document.getElementById(this.taskId).innerText,
-	// 	};
-
-	// 	this.model.addTask(boardTask);
-	// }
 }
 
 export default Task;

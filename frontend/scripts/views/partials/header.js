@@ -1,10 +1,10 @@
-import Component from "../component.js";
+import Component from '../component.js';
 
 import UserProfile from '../partials/user-profile.js';
 
-import { storage } from "../../data/storage.js";
+import { storage } from '../../data/storage.js';
 
-import Users from "../../models/users.js";
+import Users from '../../models/users.js';
 
 class Header extends Component{
 	constructor() {
@@ -14,7 +14,7 @@ class Header extends Component{
 	}
 
 	getData() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
 			if (storage.user) {
 				resolve();
 			} else {
@@ -22,7 +22,8 @@ class Header extends Component{
 				.then(user => {
 					storage.user = user;
 					resolve();
-				});
+				})
+				.catch(() => {});
 			}
 		});
 	}

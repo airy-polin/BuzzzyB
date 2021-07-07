@@ -145,6 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
   background-color: #fde368;
+  min-width: 375px;
 }
 
 .app {
@@ -179,7 +180,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .header .user__profile .profile__name {
@@ -202,11 +203,11 @@ body {
 .intro {
   font-size: 4.5em;
   font-family: "Stalemate", sans-serif;
-  margin: 80px 0;
+  margin: 60px 0;
   text-align: center;
 }
 
-.intro .logo {
+.intro .intro__logo {
   font-size: 1.5em;
   font-family: "Fredericka the Great", serif;
 }
@@ -226,6 +227,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 60px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .content .content__manager {
@@ -251,7 +253,7 @@ body {
 
 .builder__button {
   display: inline-block;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .form {
@@ -306,7 +308,7 @@ body {
 
 .form .form__controls .form__toggle .toggle__item {
   border: 1px solid #82a6e0;
-  padding: 6px 26px;
+  padding: 6px 24px;
   font-size: 14px;
 }
 
@@ -334,7 +336,11 @@ body {
 }
 
 .form .form__controls .form__input:nth-child(2) {
-  margin: 15px 0;
+  margin: 18px 0;
+}
+
+.form .form__controls .form__input label {
+  font-weight: 600;
 }
 
 .form .form__controls .form__input input {
@@ -343,7 +349,7 @@ body {
   border-radius: 5px;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .form .form__controls .form__input input.invalid {
@@ -355,24 +361,10 @@ body {
           box-shadow: 0 0 5px #3f5bae;
 }
 
-.form .form__controls .form__input input::-webkit-input-placeholder {
-  font-size: 0.7em;
-  color: #ff0000;
-}
-
-.form .form__controls .form__input input:-ms-input-placeholder {
-  font-size: 0.7em;
-  color: #ff0000;
-}
-
-.form .form__controls .form__input input::-ms-input-placeholder {
-  font-size: 0.7em;
-  color: #ff0000;
-}
-
-.form .form__controls .form__input input::placeholder {
-  font-size: 0.7em;
-  color: #ff0000;
+.form .form__controls .form__input span.pop-up {
+  color: red;
+  font-size: 12px;
+  padding: 6px 2px 0;
 }
 
 .form .form__controls .form__buttons {
@@ -402,6 +394,7 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+  margin-top: 20px;
   width: 80%;
 }
 
@@ -414,6 +407,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 18em;
+  min-width: 240px;
   margin: 20px;
   background-color: #fde368;
   border-radius: 5px;
@@ -422,7 +416,7 @@ body {
 }
 
 .boards .board.hovered {
-  background-color: #82a6e0;
+  background-color: #c9e4ff;
 }
 
 .boards .board .board__header {
@@ -432,6 +426,10 @@ body {
   padding: 30px 0;
   margin: 0 10px;
   border-bottom: 1px solid #000;
+}
+
+.boards .board .board__header.editable {
+  padding: 7px;
 }
 
 .boards .board .board__header input.title {
@@ -445,7 +443,7 @@ body {
 }
 
 .boards .board .board__input {
-  font-size: "Roboto", sans-serif;
+  font-size: "Open Sans", sans-serif;
   margin: 10px 10px 10px;
   text-align: center;
   background-color: #fff;
@@ -522,7 +520,8 @@ body {
   border-top: 1px solid #fff;
   background-color: #000;
   color: #fff;
-  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
 .footer .footer__col {
@@ -534,10 +533,20 @@ body {
   padding: 0 10px;
 }
 
-.footer .developer {
+.footer .footer__col:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer .footer__col:nth-child(2) .developer {
   font-family: "Stalemate", sans-serif;
-  font-size: 32px;
+  font-size: 2.5em;
   color: #82a6e0;
+  padding-left: 5px;
 }
 
 .highlighted {
@@ -558,8 +567,11 @@ body {
 }
 
 @media screen and (max-width: 1294px) {
+  .boards {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
   .footer {
-    padding: 10px 30px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -600,6 +612,38 @@ body {
   }
   .builder__button {
     margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 612px) {
+  .header {
+    padding: 0 30px;
+  }
+  .footer {
+    padding: 10px 30px;
+  }
+  .footer .footer__col:nth-child(2) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .footer .footer__col:nth-child(2) .developer {
+    padding-top: 20px;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .intro {
+    font-size: 3.5em;
+  }
+  .profile__name,
+  .footer {
+    font-size: 12px;
+  }
+  .profile__name .developer,
+  .footer .developer {
+    font-size: 2em;
   }
 }
 /*# sourceMappingURL=styles.css.map */

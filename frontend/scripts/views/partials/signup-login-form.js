@@ -68,8 +68,6 @@ class SignupLoginForm {
 
 			if (error === 0) {
 				this.registerUser();
-			} else {
-				alert(`Please re-check entered data`);
 			}
 		}
 
@@ -87,20 +85,18 @@ class SignupLoginForm {
 		for (let i = 0; i < inputs.length; i++) {
 			const input = inputs[i];
 
+			let validate;
 			if (input.getAttribute('type') === 'text') {
-				if (this.validateEmail(input)) {
-					this.formAddError(input);
-					error++;
-					input.value = '';
-					input.setAttribute('placeholder', 'latin letters & numbers only');
-				}
+				validate = this.validateEmail;
 			} else if (input.getAttribute('type') === 'password') {
-				if (this.validatePassword(input)) {
-					this.formAddError(input);
-					error++;
-					input.value = '';
-					input.setAttribute('placeholder', '6 symbols of latin letters & numbers');
-				}
+				validate = this.validatePassword;
+			}
+
+			if (validate(input)) {
+				this.formAddError(input);
+				error++;
+				input.value = '';
+				input.nextElementSibling.classList.remove('hidden');
 			}
 		}
 
@@ -137,7 +133,7 @@ class SignupLoginForm {
 				storage.user = user;
 				location.hash = '#/boards';
 			})
-			.catch(() => location.hash = '#/error401')
+			.catch(() => location.hash = '#/error')
 		);
 	}
 
@@ -153,7 +149,7 @@ class SignupLoginForm {
 				storage.user = user;
 				location.hash = '#/boards';
 			})
-			.catch(() => location.hash = '#/error401')
+			.catch(() => location.hash = '#/error')
 		);
 	}
 
@@ -170,10 +166,6 @@ class SignupLoginForm {
 			case 'Sign Up': return signUpButton;
 		}
 	}
-
-	_focusFirstInput() {}
-
-	_setTabIndex() {}
 }
 
 export default SignupLoginForm;

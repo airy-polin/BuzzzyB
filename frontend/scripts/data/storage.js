@@ -2,6 +2,7 @@ class Storage {
 	constructor() {
 		this.user;
 		this.boards = [];
+		this.error;
 	}
 }
 

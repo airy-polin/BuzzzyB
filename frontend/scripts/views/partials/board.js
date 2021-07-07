@@ -13,6 +13,8 @@ class Board extends Component {
 	}
 
 	render() {
+		this.tasks = this.board.tasks.map(task => new Task(task));
+
 		return `
 			<div class="board" id="${this.board.id}">
 				<div class="board__header">
@@ -23,12 +25,16 @@ class Board extends Component {
 					<input class="input invisible" type="text" value="" tabindex="2" />
 				</div>
 
-				<div class="board__items"></div>
+				<div class="board__items">
+					${this.tasks.map(task => task.render()).join('')}
+				</div>
 			</div>
 		`;
 	}
 
 	afterRender() {
+		this.tasks.map(task => task.afterRender());
+
 		const board = document.getElementById(this.board.id),
 			boardTitle = board.getElementsByClassName('board__header')[0],
 			boardInput = board.getElementsByClassName('board__input')[0],
@@ -41,8 +47,6 @@ class Board extends Component {
 
 		boardTitle.addEventListener('click', (event) => this.updateBoardTitle(event));
 		boardInput.addEventListener('click', (event) => this.focusBoard(event));
-
-		// this.addBoard();
 	}
 
 	focusBoard(event) {
@@ -63,15 +67,7 @@ class Board extends Component {
 			board = inputContainer.parentElement;
 	
 		if (value !== '') {
-			const containerToAddRecord = board.getElementsByClassName('board__items')[0];
-			const newTask = new Task(value);
-
-			newTask.render().then(html => {
-				containerToAddRecord.insertAdjacentHTML('beforeend', html);
-				newTask.afterRender();
-			});
-
-			this.tabCount++;
+			this.addTask(input.value, board);
 			input.value = '';
 		}
 		input.classList.add('invisible');
@@ -95,8 +91,7 @@ class Board extends Component {
 			parentBoard = titleContainer.parentElement;
 
 		titleContainer.innerHTML = `<input class="title" type="text" value=${titleValue} tabindex="1" />`;
-		titleContainer.style.padding = '7px';
-		titleContainer.style.fontsize = '36px';
+		titleContainer.classList.add('editable');
 
 		const input = titleContainer.getElementsByTagName('input')[0];
 		input.focus();
@@ -110,7 +105,7 @@ class Board extends Component {
 		const titleContainer = input.parentElement;
 
 		titleContainer.innerHTML = `<span class="title">${input.value}</span>`;
-		titleContainer.style.padding = '30px 0';
+		titleContainer.classList.remove('editable');
 
 		const updatedBoard = {
 			name: input.value,
@@ -121,19 +116,6 @@ class Board extends Component {
 			this.board.name = updatedBoard.name;
 		});
 	}
-
-	// addBoard() {
-	// 	const newBoard = {
-	// 		name: document.getElementsByClassName('board__header')[0].innerText,
-	// 	};
-
-	// 	return new Promise(() => this.model.addBoard(newBoard)
-	// 		.then((addedBoard) => {
-	// 			location.hash = '#/boards';
-	// 		})
-	// 		.catch(status => alert(`${status}`))
-	// 	);
-	// }
 
 	dragOver(event) {
 		event.preventDefault();
@@ -160,6 +142,26 @@ class Board extends Component {
 		tasksContainer.append(replacedTask);
 		replacedTask.classList.remove('dragged');
 		replacedBoard.classList.remove('hovered');
+	}
+
+	addTask(taskName, boardElement) {
+		const newTask = {
+			boardId: this.board.id,
+			name: taskName,
+		};
+
+		let task;
+		this.model.addTask(newTask)
+			.then(addedTask => {
+				task = new Task(addedTask);
+				return task.render();
+			})
+			.then(html => {
+				const containerToAddRecord = boardElement.getElementsByClassName('board__items')[0];
+				containerToAddRecord.insertAdjacentHTML('beforeend', html);
+				task.afterRender();
+				this.tabCount++;
+			});
 	}
 }
 

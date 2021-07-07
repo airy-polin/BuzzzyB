@@ -8,20 +8,17 @@ class MainMenuButtons {
 	}
 
 	render() {
-		this.addButton = new Button('My meetings', Button.Type.SECONDARY, Button.Size.BIG, null, '#/boards/list');
-		this.listButton = new Button('New board', Button.Type.PRIMARY, Button.Size.BIG, null, '#/boards/add');
+		this.addButton = new Button('New board', Button.Type.PRIMARY, Button.Size.BIG, null, '#/boards/add');
 
 		return `
 			<div class="manager__buttons">
 				${this.addButton.render()}
-				${this.listButton.render()}
 			</div>
 		`;
 	}
 
 	afterRender() {
 		this.addButton.afterRender();
-		this.listButton.afterRender();
 	}
 }
 

@@ -35,7 +35,7 @@ class Preloader {
 	}
 
 	changeOutline() {
-		const preloaderContainer = document.getElementsByClassName('content__manager')[0];
+		const preloaderContainer = document.getElementsByClassName('content')[0];
 		this.preloaderParts = preloaderContainer.getElementsByTagName('path');
 	
 		let i = this.startColorIndex;

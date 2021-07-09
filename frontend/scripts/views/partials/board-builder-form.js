@@ -1,16 +1,17 @@
-import { storage } from '../../data/storage.js';
+import { storage } from '../../data/storage';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
-import Input from './controls/input.js';
-import Button from './controls/button.js';
-import CloseButton from './controls/close-button.js';
+import Input from './controls/input';
+import Button from './controls/button';
+import CloseButton from './controls/close-button';
 
 class BoardBuilderForm {
 	constructor(formName) {
 		this.formName = formName;
 		this.model = new Users();
 	}
+
 	render() {
 		this.boardNameInput = new Input('What shall we call the board?', Input.Type.TEXT);
 		this.createButton = new Button('Create', Button.Type.PRIMARY, Button.Size.SMALL, () => this.addBoard());
@@ -49,7 +50,7 @@ class BoardBuilderForm {
 
 	addBoard() {
 		const newBoard = {
-			name: document.getElementById('what-shall-we-call-the-board').value,
+			name: document.getElementById('what-shall-we-call-the-board').value
 		};
 
 		return new Promise(() => this.model.addBoard(newBoard)

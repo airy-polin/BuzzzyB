@@ -1,9 +1,4 @@
 class Input {
-	static Type = {
-		TEXT: 1,
-		PASSWORD: 2,
-	}
-
 	constructor(labelName, type) {
 		this.labelName = labelName;
 		this.type = type;
@@ -37,5 +32,10 @@ class Input {
 		}
 	}
 }
+
+Input.Type = {
+	TEXT: 1,
+	PASSWORD: 2
+};
 
 export default Input;

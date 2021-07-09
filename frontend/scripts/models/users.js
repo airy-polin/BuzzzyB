@@ -12,7 +12,8 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
+
 			xhr.send(JSON.stringify(newUser));
 		});
 	}
@@ -30,7 +31,8 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
+
 			xhr.send(JSON.stringify(user));
 		});
 	}
@@ -48,7 +50,7 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
 
 			xhr.send();
 		});
@@ -67,7 +69,7 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
 
 			xhr.send();
 		});
@@ -87,7 +89,7 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
 
 			xhr.send(JSON.stringify(updatedBoard));
 		});
@@ -107,7 +109,7 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
+			};
 
 			xhr.send(JSON.stringify(newBoard));
 		});
@@ -127,8 +129,8 @@ class Users {
 				} else {
 					reject(xhr.status);
 				}
-			}
-			
+			};
+
 			xhr.send(JSON.stringify(newTask));
 		});
 	}

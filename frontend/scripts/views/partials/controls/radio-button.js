@@ -1,4 +1,4 @@
-import {generateID} from '../../../helpers/utils.js';
+import {generateID} from '../../../helpers/utils';
 
 class RadioButton {
 	constructor(firstLabelName, secondLabelName, isFirstActive) {
@@ -34,9 +34,7 @@ class RadioButton {
 		radioButton.addEventListener('click', (event) => this.activateRadioButton(event));
 	}
 
-	activateRadioButton(event) {
-		const clickedRadio = event.currentTarget;
-
+	activateRadioButton() {
 		const radioButtons = document.getElementsByClassName('toggle__item');
 		for (let i = 0; i < radioButtons.length; i++) {
 			radioButtons[i].classList.toggle('checked');
@@ -47,7 +45,7 @@ class RadioButton {
 	toggleHash() {
 		switch (location.hash) {
 			case '#/signup': return '#/login';
-			case'#/login': return '#/signup';
+			case '#/login': return '#/signup';
 		}
 	}
 }

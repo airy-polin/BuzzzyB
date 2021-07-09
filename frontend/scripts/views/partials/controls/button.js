@@ -1,16 +1,6 @@
-import {generateID} from '../../../helpers/utils.js';
+import {generateID} from '../../../helpers/utils';
 
 class Button {
-	static Type = {
-		PRIMARY: 1,
-		SECONDARY: 0,
-	}
-
-	static Size = {
-		BIG: 1,
-		SMALL: 0,
-	}
-
 	constructor(name, type, size, onClickHandler, link) {
 		this.name = name;
 		this.type = type;
@@ -57,5 +47,15 @@ class Button {
 		}
 	}
 }
+
+Button.Type = {
+	PRIMARY: 1,
+	SECONDARY: 0
+};
+
+Button.Size = {
+	BIG: 1,
+	SMALL: 0
+};
 
 export default Button;

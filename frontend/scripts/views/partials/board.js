@@ -1,8 +1,8 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import Task from './task.js';
+import Task from './task';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
 class Board extends Component {
 	constructor(board) {
@@ -37,8 +37,7 @@ class Board extends Component {
 
 		const board = document.getElementById(this.board.id),
 			boardTitle = board.getElementsByClassName('board__header')[0],
-			boardInput = board.getElementsByClassName('board__input')[0],
-			boardTasksContainer = board.getElementsByClassName('board__items')[0];
+			boardInput = board.getElementsByClassName('board__input')[0];
 
 		board.addEventListener('dragover', this.dragOver);
 		board.addEventListener('dragenter', this.dragEnter);
@@ -65,7 +64,7 @@ class Board extends Component {
 			value = input.value,
 			inputContainer = input.parentElement,
 			board = inputContainer.parentElement;
-	
+
 		if (value !== '') {
 			this.addTask(input.value, board);
 			input.value = '';
@@ -78,17 +77,20 @@ class Board extends Component {
 			event.target.blur();
 		}
 	}
-	
+
 	addRecordToBoard(container, text) {
-		container.insertAdjacentHTML('beforeend', `<div class="board__item" tabindex=${tabCount}><span class="item__text">${text}</span><img src="images/check-mark-green.svg" alt="check mark / true" />`);
-		tabCount++;
+		container.insertAdjacentHTML(
+			'beforeend',
+			`<div class="board__item">
+				<span class="item__text">${text}</span>
+				<img src="images/check-mark-green.svg" alt="check mark / true" />
+			</div>`);
 	}
 
 	updateBoardTitle(event) {
 		const titleContainer = event.currentTarget,
 			title = titleContainer.getElementsByTagName('span')[0],
-			titleValue = title.innerText,
-			parentBoard = titleContainer.parentElement;
+			titleValue = title.innerText;
 
 		titleContainer.innerHTML = `<input class="title" type="text" value=${titleValue} tabindex="1" />`;
 		titleContainer.classList.add('editable');
@@ -109,10 +111,10 @@ class Board extends Component {
 
 		const updatedBoard = {
 			name: input.value,
-			id: this.board.id,
+			id: this.board.id
 		};
 
-		this.model.updateBoard(updatedBoard).then(boards => {
+		this.model.updateBoard(updatedBoard).then(() => {
 			this.board.name = updatedBoard.name;
 		});
 	}
@@ -147,7 +149,7 @@ class Board extends Component {
 	addTask(taskName, boardElement) {
 		const newTask = {
 			boardId: this.board.id,
-			name: taskName,
+			name: taskName
 		};
 
 		let task;

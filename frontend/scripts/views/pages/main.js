@@ -1,6 +1,6 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import InitializationButtons from '../partials/initialization-buttons.js';
+import InitializationButtons from '../partials/initialization-buttons';
 
 class MainPage extends Component {
 	getData() {
@@ -14,7 +14,7 @@ class MainPage extends Component {
 			resolve(`${this.initializationButtons.render()}`);
 		});
 	}
-	
+
 	afterRender() {
 		this.initializationButtons.afterRender();
 	}

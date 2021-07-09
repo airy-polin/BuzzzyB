@@ -1,7 +1,7 @@
-import { generateID } from '../../helpers/utils.js';
+import { generateID } from '../../helpers/utils';
 
-import Users from '../../models/users.js';
-import Component from '../component.js';
+import Users from '../../models/users';
+import Component from '../component';
 
 class Task extends Component {
 	constructor(task) {
@@ -63,7 +63,7 @@ class Task extends Component {
 
 	dragEnd(event) {
 		const draggedTask = event.currentTarget;
-		
+
 		draggedTask.classList.remove('hidden');
 		draggedTask.classList.remove('dragged');
 	}

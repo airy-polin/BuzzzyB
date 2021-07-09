@@ -1,6 +1,6 @@
-import Button from './controls/button.js';
+import Button from './controls/button';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
 class MainMenuButtons {
 	constructor() {

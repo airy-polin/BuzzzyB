@@ -1,20 +1,20 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import UserProfile from '../partials/user-profile.js';
+import UserProfile from '../partials/user-profile';
 
-import { storage } from '../../data/storage.js';
+import { storage } from '../../data/storage';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
 class Header extends Component{
 	constructor() {
 		super();
-		
+
 		this.model = new Users();
 	}
 
 	getData() {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			if (storage.user) {
 				resolve();
 			} else {

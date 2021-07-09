@@ -1,8 +1,8 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import Button from '../partials/controls/button.js';
+import Button from '../partials/controls/button';
 
-import { storage } from '../../data/storage.js';
+import { storage } from '../../data/storage';
 
 class ErrorPage extends Component {
 	constructor() {
@@ -13,7 +13,7 @@ class ErrorPage extends Component {
 	getData() {
 		return new Promise(resolve => resolve());
 	}
-	
+
 	render() {
 		this.getBackButton = new Button('Main page', Button.Type.PRIMARY, Button.Size.BIG, () => this.getBackToMainPage());
 

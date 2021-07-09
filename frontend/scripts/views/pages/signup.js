@@ -1,6 +1,6 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import SignupLoginForm from '../partials/signup-login-form.js';
+import SignupLoginForm from '../partials/signup-login-form';
 
 class SignUpPage extends Component {
 	getData() {

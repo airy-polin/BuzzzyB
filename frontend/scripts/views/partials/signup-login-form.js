@@ -1,11 +1,11 @@
-import RadioButton from './controls/radio-button.js';
-import Input from './controls/input.js';
-import Button from './controls/button.js';
-import CloseButton from './controls/close-button.js';
+import RadioButton from './controls/radio-button';
+import Input from './controls/input';
+import Button from './controls/button';
+import CloseButton from './controls/close-button';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
-import { storage } from '../../data/storage.js';
+import { storage } from '../../data/storage';
 
 class SignupLoginForm {
 	constructor(formName) {
@@ -22,9 +22,9 @@ class SignupLoginForm {
 		this.signUpButton = new Button('Sign Up', Button.Type.PRIMARY, Button.Size.SMALL, (event) => this.onFormSubmit(event));
 		this.logInButton = new Button('Log In', Button.Type.PRIMARY, Button.Size.SMALL, (event) => this.onFormSubmit(event));
 		this.cancelButton = new Button('Cancel', Button.Type.SECONDARY, Button.Size.SMALL, () => this.closeInitializationForm());
-		
+
 		this.closeButton = new CloseButton(() => this.closeInitializationForm());
-		
+
 		return `
 			<form class="form">
 				<div class="form__header">
@@ -123,8 +123,8 @@ class SignupLoginForm {
 
 	registerUser() {
 		const newUser = {
-			email: document.getElementById('email-address').value, 
-			password: document.getElementById('password').value,
+			email: document.getElementById('email-address').value,
+			password: document.getElementById('password').value
 		};
 
 		return new Promise(() => this.model.registerUser(newUser)
@@ -139,8 +139,8 @@ class SignupLoginForm {
 
 	loginUser() {
 		const user = {
-			email: document.getElementById('email-address').value, 
-			password: document.getElementById('password').value,
+			email: document.getElementById('email-address').value,
+			password: document.getElementById('password').value
 		};
 
 		return new Promise(() => this.model.loginUser(user)
@@ -161,7 +161,7 @@ class SignupLoginForm {
 	}
 
 	_getContextButton(logInButton, signUpButton) {
-		switch(this.formName) {
+		switch (this.formName) {
 			case 'Log In': return logInButton;
 			case 'Sign Up': return signUpButton;
 		}

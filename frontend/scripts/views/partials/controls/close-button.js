@@ -1,4 +1,4 @@
-import { generateID } from '../../../helpers/utils.js';
+import { generateID } from '../../../helpers/utils';
 
 class CloseButton {
 	constructor(onClickHandler) {

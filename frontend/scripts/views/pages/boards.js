@@ -1,16 +1,16 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import MainMenuButtons from '../partials/main-menu-buttons.js';
-import Board from '../partials/board.js';
+import MainMenuButtons from '../partials/main-menu-buttons';
+import Board from '../partials/board';
 
-import { storage } from '../../data/storage.js';
+import { storage } from '../../data/storage';
 
-import Users from '../../models/users.js';
+import Users from '../../models/users';
 
 class Boards extends Component {
 	constructor() {
 		super();
-		
+
 		this.model = new Users();
 	}
 
@@ -19,7 +19,7 @@ class Boards extends Component {
 			this.model.getBoards().then(boards => {
 				storage.boards = boards;
 				resolve();
-			})
+			});
 		});
 	}
 

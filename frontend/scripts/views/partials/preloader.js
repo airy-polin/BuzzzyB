@@ -37,14 +37,14 @@ class Preloader {
 	changeOutline() {
 		const preloaderContainer = document.getElementsByClassName('content')[0];
 		this.preloaderParts = preloaderContainer.getElementsByTagName('path');
-	
+
 		let i = this.startColorIndex;
-	
+
 		for (let j = 0; j < this.colors.length; j++) {
 			this.preloaderParts[i].setAttribute('style', `fill: ${this.colors[j]}`);
 			i = (i + 1) % this.preloaderParts.length;
 		}
-	
+
 		this.startColorIndex = (this.startColorIndex + 1) % this.preloaderParts.length;
 	}
 

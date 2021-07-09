@@ -1,19 +1,19 @@
-import { parseRequestURL } from './helpers/utils.js';
+import { parseRequestURL } from './helpers/utils';
 
-import Header from './views/partials/header.js';
-import Footer from './views/partials/footer.js';
+import Header from './views/partials/header';
+import Footer from './views/partials/footer';
 
-import Preloader from './views/partials/preloader.js';
-import MainPage from './views/pages/main.js';
-import SignUpPage from './views/pages/signup.js';
-import LoginPage from './views/pages/login.js';
-import Boards from './views/pages/boards.js';
-import NewBoardConstructor from './views/pages/add-new-board.js';
+import Preloader from './views/partials/preloader';
+import MainPage from './views/pages/main';
+import SignUpPage from './views/pages/signup';
+import LoginPage from './views/pages/login';
+import Boards from './views/pages/boards';
+import NewBoardConstructor from './views/pages/add-new-board';
 
-import ErrorPage from './views/pages/error-page.js';
-import Error404 from './views/pages/error404.js';
+import ErrorPage from './views/pages/error-page';
+import Error404 from './views/pages/error404';
 
-import { storage } from './data/storage.js';
+import { storage } from './data/storage';
 
 const Routes = {
 	'/': MainPage,
@@ -21,7 +21,7 @@ const Routes = {
 	'/login': LoginPage,
 	'/boards': Boards,
 	'/boards/add': NewBoardConstructor,
-	'/error': ErrorPage,
+	'/error': ErrorPage
 };
 
 function router() {
@@ -75,5 +75,5 @@ function handleException(error) {
 	location.hash = '#/error';
 }
 
-window.addEventListener('load', router);
+module.hot ? module.hot.accept(router()) : window.addEventListener('load', router);
 window.addEventListener('hashchange', router);
